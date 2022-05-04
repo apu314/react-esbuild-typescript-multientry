@@ -1,15 +1,17 @@
-const { ESBuildMinifyPlugin } = require('esbuild-loader')
-const glob = require('glob')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const ProvidePlugin = require('webpack')
-const path = require('path')
+import { ESBuildMinifyPlugin } from 'esbuild-loader'
+import glob from 'glob'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+import ProvidePlugin from 'webpack'
+import path from 'path'
+
+import tsconfig from './tsconfig.json'
 
 const isDev = process.env.NODE_ENV === 'development'
 const mode = isDev ? 'development' : 'production'
 
 const getEntries = (pattern) => {
   const entries = {}
-  glob.sync(pattern).forEach((file) => {
+  glob.sync(pattern).forEach(file => {
     const outputFileKey = file.replace('src/', '')
 
     if (!fileIsOnIgnoreList(outputFileKey)) {
@@ -27,13 +29,14 @@ module.exports = {
   entry: getEntries('./src/**/*.@(ts|js|tsx|jsx)'),
   module: {
     rules: [
+      // Use esbuild loader instead of babel-loader
       {
         test: /\.tsx?$/,
         loader: 'esbuild-loader',
         options: {
           loader: 'tsx',
           target: 'es2015',
-          tsconfigRaw: require('./tsconfig.json')
+          tsconfigRaw: tsconfig
         }
       },
       {
@@ -42,7 +45,7 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              // Path for the bundle
+              // Path to output the bundle
               publicPath: (resourcePath, context) =>
                 `${path.relative(path.dirname(resourcePath), context)}/`
             }

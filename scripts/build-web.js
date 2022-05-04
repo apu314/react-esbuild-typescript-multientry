@@ -1,11 +1,11 @@
-const b = require('esbuild')
-const entryPoints = require('./entry-points')
+import { buildSync } from 'esbuild'
+import { entryPoints } from './entry-points'
 
-b.buildSync({
-    entryPoints: entryPoints(),
-    outdir: './dist',
-    bundle: true,
-    minify: true,
-    sourcemap: true,
-    target: ['chrome58', 'firefox57', 'safari11', 'edge16'],
+buildSync({
+  entryPoints: entryPoints(),
+  bundle: true,
+  outdir: '../dist',
+  // minify: true,
+  sourcemap: true,
+  target: ['chrome58', 'firefox57', 'safari11', 'edge16'],
 })

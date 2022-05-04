@@ -1,5 +1,11 @@
 import { FC } from 'react'
 import Server from 'react-dom/server'
 
-let App: FC = () => <h1>Building with esbuild</h1>
+const App: FC = () => {
+  return (
+    <h1>Building with esbuild</h1>
+  )
+}
 console.log(Server.renderToString(<App />))
+
+export default App

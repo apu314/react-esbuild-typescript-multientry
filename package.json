@@ -6,8 +6,12 @@
   "author": "Adolfo Unturbe Pérez",
   "license": "MIT",
   "private": true,
+  "type": "module",
   "scripts": {
-    "build": "esbuild ./src/app.jsx --bundle --outfile=dist/app.js"
+    "build": "node scripts/build.js",
+    "build:single": "esbuild ./src/app.jsx --bundle --outfile=dist/app.js",
+    "build:webpack": "webpack --config ./webpack.config.js",
+    "watch:webpack": "webpack --config ./webpack.config.js --watch"
   },
   "dependencies": {
     "react": "^18.1.0",
@@ -21,6 +25,8 @@
     "css-loader": "^6.7.1",
     "esbuild": "^0.14.38",
     "esbuild-loader": "^2.18.0",
+    "esbuild-plugin-glob": "^1.1.2",
+    "esbuild-plugin-jsximportsource": "^0.0.4",
     "glob": "^8.0.1",
     "mini-css-extract-plugin": "^2.6.0",
     "sass": "^1.51.0",
