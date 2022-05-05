@@ -2,6 +2,12 @@
 
 🚧 WORK IN PROGRESS...
 
+### Auto-import for JSX
+
+<https://esbuild.github.io/content-types/#jsx>
+
+----
+
 - webpack
 - esbuild-loader (instead on ts-loader/babel-loader)
 - frokTsCheckerWebpackPlugin (To do typeCheckig)
